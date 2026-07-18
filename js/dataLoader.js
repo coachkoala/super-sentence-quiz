@@ -1,5 +1,6 @@
-// Loads the sentence dataset. Swapping data/sentences.json for the full
-// 1010-sentence file later requires no code change here.
+// Loads the sentence dataset from data/sentences.json (currently the full
+// 1010-sentence set). Regenerate it with scripts/convert_sentences.py from
+// the source spreadsheet, then check it with scripts/validate-sentences.mjs.
 
 export async function loadSentences(url = 'data/sentences.json') {
   const res = await fetch(url, { cache: 'no-store' });
