@@ -112,6 +112,12 @@ export function playCorrect(comboLevel) {
   }
 }
 
+export function playLifeGain() {
+  // Bright ascending fifth — reads as a distinct "power-up", not just another correct-chime.
+  chime(NOTE.E5, { duration: 0.12, gain: 0.55 });
+  chime(NOTE.C6, { duration: 0.24, gain: 0.55, delay: 0.09 });
+}
+
 export function playWrong() {
   // A single soft downward glide — signals "not quite" without a harsh buzzer.
   soft(NOTE.G4, { duration: 0.22, gain: 0.38, type: 'sine', freqEnd: NOTE.C4 });

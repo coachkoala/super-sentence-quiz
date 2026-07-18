@@ -18,6 +18,21 @@ export function pulseLostHeart(lives) {
   if (hearts[lives]) hearts[lives].classList.add('pulse');
 }
 
+export function pulseGainedHeart(lives) {
+  const hearts = el.heartsRow.children;
+  const newest = hearts[lives - 1];
+  if (newest) newest.classList.add('gain');
+}
+
+export function popLife() {
+  const pop = document.createElement('div');
+  pop.className = 'life-pop';
+  pop.textContent = '+1 ❤️';
+  el.app.appendChild(pop);
+  requestAnimationFrame(() => pop.classList.add('fly'));
+  setTimeout(() => pop.remove(), 750);
+}
+
 export function renderBank(bankState, onPick) {
   el.wordBank.innerHTML = '';
   bankState.forEach((item, i) => {

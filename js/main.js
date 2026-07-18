@@ -6,7 +6,8 @@ import { loadSentences } from './dataLoader.js';
 import { shareScoreCard } from './share.js';
 import * as sound from './sound.js';
 
-const MAX_LIVES = 3;
+const MAX_LIVES = 5;
+const LIFE_REGEN_COMBO = 5; // every N-combo streak restores 1 life, up to MAX_LIVES
 const AUTO_ADVANCE_DELAY = 900; // ms after a correct answer
 const DISTRACTOR_COUNT = 1;
 
@@ -169,6 +170,10 @@ function checkAnswer() {
       saveBestScore(best);
     }
 
+    if (combo % LIFE_REGEN_COMBO === 0 && lives < MAX_LIVES) {
+      gainLife();
+    }
+
     el.checkBtn.style.display = 'none';
     advanceTimer = setTimeout(loadNext, AUTO_ADVANCE_DELAY);
   } else {
@@ -178,7 +183,7 @@ function checkAnswer() {
     el.card.classList.add('wrong', 'shake');
     el.revealSub.className = 'reveal-sub no-text';
     el.checkBtn.style.display = 'none';
-    el.revealSub.textContent = current.e + '  ·  Kurang tepat';
+    el.revealSub.textContent = current.e;
     loseLife();
     if (lives > 0) {
       el.nextBtn.classList.add('show');
@@ -193,6 +198,14 @@ function loseLife() {
   if (lives <= 0) {
     setTimeout(triggerGameOver, 1100);
   }
+}
+
+function gainLife() {
+  lives = Math.min(MAX_LIVES, lives + 1);
+  sound.playLifeGain();
+  render.renderHearts(lives, MAX_LIVES);
+  render.pulseGainedHeart(lives);
+  render.popLife();
 }
 
 function triggerGameOver() {
