@@ -70,8 +70,11 @@ def main() -> None:
         sys.exit(1)
 
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Wrote {len(records)} sentences to {out}")
+    # Compact (no indentation) — this file is fetched by every player on load,
+    # so smaller beats pretty-printed for a dataset this size.
+    compact = json.dumps(records, ensure_ascii=False, separators=(",", ":"))
+    out.write_text(compact, encoding="utf-8")
+    print(f"Wrote {len(records)} sentences to {out} ({len(compact.encode('utf-8'))} bytes)")
 
 
 if __name__ == "__main__":
