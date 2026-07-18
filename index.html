@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Super Sentence Quiz — by Zulfazida</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="app">
+  <div class="brand-strip">Super Sentence Quiz <span>by Zulfazida</span></div>
+  <div class="topbar">
+    <div class="hearts" id="heartsRow"></div>
+    <div class="topbar-right">
+      <button class="icon-btn" id="soundToggleBtn" title="Suara" aria-label="Aktifkan/nonaktifkan suara">🔊</button>
+      <div class="score-live">
+        <span class="val" id="scoreVal">0</span>
+        <span class="best-inline">Terbaikmu: <b id="bestVal">0</b></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="combo-row">
+    <div class="combo-pill" id="comboPill">🔥 x3</div>
+  </div>
+
+  <div class="stage">
+    <div class="state-box" id="loadingBox">
+      <div class="spinner"></div>
+      <div>Memuat soal…</div>
+    </div>
+
+    <div class="state-box" id="errorBox">
+      <div class="error-message"></div>
+      <button class="error-retry">Coba lagi</button>
+    </div>
+
+    <div class="card" id="card">
+      <div class="card-eyebrow">Terjemahkan ke Inggris</div>
+      <div class="prompt-id" id="promptId"></div>
+
+      <div class="answer-zone empty" id="answerZone"></div>
+
+      <div class="reveal-box" id="revealBox">
+        <div class="reveal-compare" id="revealCompare"></div>
+        <div class="reveal-sub" id="revealSub"></div>
+      </div>
+    </div>
+
+    <div class="word-bank" id="wordBank"></div>
+  </div>
+
+  <div class="action-row">
+    <button class="btn btn-ghost" id="skipBtn" title="Lewati">⟳</button>
+    <button class="btn btn-primary" id="checkBtn" disabled>Cek Jawaban</button>
+    <button class="btn btn-next" id="nextBtn">Lanjut →</button>
+  </div>
+
+  <!-- GAME OVER OVERLAY -->
+  <div class="gameover" id="gameOver">
+    <div class="go-inner">
+      <div class="go-label" id="goLabel">SKOR AKHIR</div>
+      <div class="go-score" id="goScore">0</div>
+      <div class="go-newbest" id="goNewBest">🏆 REKOR BARU!</div>
+      <div class="go-stats">
+        <div class="go-stat"><span id="goCombo">0</span><small>Combo maksimal</small></div>
+        <div class="go-stat"><span id="goCorrect">0</span><small>Jawaban benar</small></div>
+      </div>
+      <div class="go-btn-row">
+        <button class="btn btn-primary go-retry" id="retryBtn">Main Lagi ↻</button>
+        <button class="btn btn-share" id="shareBtn">Bagikan 📤</button>
+      </div>
+      <div class="go-best-row">Skor terbaikmu: <b id="goBestSmall">0</b></div>
+      <div class="go-share-hint" id="shareHint"></div>
+    </div>
+  </div>
+
+  <div class="share-card-wrap">
+    <div class="share-card" id="shareCard">
+      <div class="sc-brand">SUPER SENTENCE QUIZ</div>
+      <div class="sc-credit">by Zulfazida</div>
+      <div class="sc-label">Skor Akhir</div>
+      <div class="sc-score" id="scScore">0</div>
+      <div class="sc-stats">
+        <div class="sc-stat"><span id="scCombo">0</span><small>Combo Maks</small></div>
+        <div class="sc-stat"><span id="scCorrect">0</span><small>Jawaban Benar</small></div>
+      </div>
+      <div class="sc-footer" id="scFooter">Ayo ngalahin skorku belajar Bahasa Inggris 🔥</div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
