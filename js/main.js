@@ -5,6 +5,7 @@ import { loadBestScore, saveBestScore } from './storage.js';
 import { loadSentences } from './dataLoader.js';
 import { shareScoreCard } from './share.js';
 import * as sound from './sound.js';
+import { registerServiceWorker } from './registerSW.js';
 
 const MAX_LIVES = 5;
 const LIFE_REGEN_COMBO = 5; // every N-combo streak restores 1 life, up to MAX_LIVES
@@ -234,3 +235,4 @@ function resetGame() {
 }
 
 init();
+registerServiceWorker();
