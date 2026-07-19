@@ -368,6 +368,7 @@ html, body {
   display: none;
 }
 .btn-next.show { display: block; }
+.btn-next.ok { background: var(--right); color: #0d1a12; }
 
 ::selection { background: var(--lime); color: var(--bg); }
 

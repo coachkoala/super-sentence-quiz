@@ -9,7 +9,6 @@ import { registerServiceWorker } from './registerSW.js';
 
 const MAX_LIVES = 5;
 const LIFE_REGEN_COMBO = 5; // every N-combo streak restores 1 life, up to MAX_LIVES
-const AUTO_ADVANCE_DELAY = 900; // ms after a correct answer
 const DISTRACTOR_COUNT = 1;
 
 let pool = [];
@@ -25,7 +24,6 @@ let current = null;
 let answerTokens = [];
 let bankState = [];
 let answered = false;
-let advanceTimer = null;
 
 async function init() {
   best = loadBestScore();
@@ -94,7 +92,6 @@ async function bootstrapData() {
 }
 
 function loadNext() {
-  if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; }
   if (idx >= pool.length) { idx = 0; shuffle(pool); }
   current = pool[idx++];
   answered = false;
@@ -104,7 +101,7 @@ function loadNext() {
   el.revealBox.classList.remove('show');
   el.checkBtn.style.display = 'block';
   el.checkBtn.disabled = true;
-  el.nextBtn.classList.remove('show');
+  el.nextBtn.classList.remove('show', 'ok');
   el.skipBtn.disabled = false;
 
   el.promptId.textContent = current.t;
@@ -176,7 +173,7 @@ function checkAnswer() {
     }
 
     el.checkBtn.style.display = 'none';
-    advanceTimer = setTimeout(loadNext, AUTO_ADVANCE_DELAY);
+    el.nextBtn.classList.add('show', 'ok');
   } else {
     combo = 0;
     sound.playWrong();
